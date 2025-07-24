@@ -1,0 +1,178 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "bindings": {
+      "alt-/": "workspace::ToggleRightDock",
+      "alt-`": "workspace::ToggleBottomDock",
+      "alt-1": "project_panel::ToggleFocus",
+      "alt-2": "agent::ToggleFocus", // Chat with AI
+      "alt-3": "git_panel::ToggleFocus",
+
+      "ctrl-q": "pane::CloseActiveItem",
+      "ctrl-c": "pane::CloseAllItems",
+
+      // Window movement bindings
+      // Ctrl jklk to move between panes
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
+
+      // Pane
+      "alt-q": "pane::CloseActiveItem",
+      "alt--": "pane::SplitDown",
+      "alt-\\": "pane::SplitRight"
+    }
+  },
+
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
+    "bindings": {
+      // put key-bindings here if you want them to work in normal & visual mode
+      "alt-j": "editor::MoveLineDown",
+      "alt-k": "editor::MoveLineUp"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      "space e": "pane::RevealInProjectPanel",
+      "space q": "pane::CloseActiveItem",
+      "space c": "pane::CloseAllItems",
+      "space f": "editor::Format",
+      "space w": "workspace::Save",
+      "space p": "file_finder::Toggle",
+
+      // + Buffers
+      // Switch between buffers
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-l": "pane::ActivateNextItem",
+
+      // +LSP
+      "g a": "editor::ToggleCodeActions",
+      "g n": "editor::Rename",
+      "g d": "editor::GoToDefinition",
+      "g D": "editor::GoToDefinitionSplit",
+      "g i": "editor::GoToImplementation",
+      "g I": "editor::GoToImplementationSplit",
+      "g t": "editor::GoToTypeDefinition",
+      "g T": "editor::GoToTypeDefinitionSplit",
+      "g r": "editor::FindAllReferences",
+      "] d": "editor::GoToDiagnostic",
+      "[ d": "editor::GoToPreviousDiagnostic",
+      // search
+      "space s s": "project_symbols::Toggle",
+      "space s g": "pane::DeploySearch",
+
+      // +Git
+      "space g g": "git_panel::ToggleFocus",
+      // Git prev/next hunk
+      "] h": "editor::GoToHunk",
+      "[ h": "editor::GoToPreviousHunk",
+
+      // +Debug
+      "space d b": "editor::ToggleBreakpoint",
+      "space d r": "debugger::Start",
+      "space d c": "debugger::Continue",
+      "space d s": "debugger::StepInto",
+      "space d n": "debugger::StepOver",
+      "space d o": "debugger::StepOut",
+      "space d q": "debugger::Stop"
+    }
+  },
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
+    "bindings": {
+      "space a q": "assistant::InlineAssist",
+      "space a f": [
+        "assistant::InlineAssist",
+        {
+          "prompt": "There is a problem in this code. Rewrite the code with fixes."
+        }
+      ],
+      "space a o": [
+        "assistant::InlineAssist",
+        {
+          "prompt": "Optimize the selected code to improve performance and readability."
+        }
+      ],
+      "space a d": [
+        "assistant::InlineAssist",
+        {
+          "prompt": "Please add documentation comments to the selected code."
+        }
+      ],
+      "space a t": [
+        "assistant::InlineAssist",
+        {
+          "prompt": "Please generate tests for my code."
+        }
+      ]
+    }
+  },
+  {
+    "context": "EmptyPane || SharedScreen",
+    "bindings": {
+      "space p": "file_finder::Toggle"
+    }
+  },
+  // File panel
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "a": "project_panel::NewFile",
+      "A": "project_panel::NewDirectory",
+      "y": "project_panel::Copy",
+      "x": "project_panel::Cut",
+      "d": "project_panel::Delete",
+      "r": "project_panel::Rename",
+      "p": "project_panel::Paste",
+      "c": "workspace::CopyPath",
+      "h": "project_panel::CollapseSelectedEntry",
+      "l": "project_panel::ExpandSelectedEntry",
+      "E": "project_panel::RevealInFileManager",
+      "z": "project_panel::CollapseAllEntries",
+      // options
+      "ctrl-i": "project_panel::ToggleHideGitIgnore",
+      // close
+      "space e": "workspace::ToggleRightDock",
+      "q": "workspace::ToggleRightDock"
+    }
+  },
+
+  {
+    "context": "Editor && showing_completions",
+    "bindings": {
+      "ctrl-j": "editor::ContextMenuNext",
+      "ctrl-k": "editor::ContextMenuPrevious"
+    }
+  },
+  {
+    "context": "FileFinder || (FileFinder > Picker > Editor) || (FileFinder > Picker > menu)",
+    "bindings": {
+      "ctrl-s": "pane::SplitDown",
+      "ctrl-v": "pane::SplitLeft",
+      "ctrl-j": "menu::SelectNext",
+      "ctrl-k": "menu::SelectPrevious"
+    }
+  },
+  {
+    "context": "GitPanel",
+    "bindings": {
+      // NOTE: alt + l create commit completion
+      "a": "git::StageAll",
+      "A": "git::UnstageAll",
+      "space": "git::ToggleStaged",
+      "c": "git::Commit",
+      "p": "git::Push",
+      "u": "git::Pull", // update
+      "s": "git::CheckoutBranch" // git switch
+    }
+  }
+]
