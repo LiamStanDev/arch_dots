@@ -6,6 +6,7 @@ return {
 		"christoomey/vim-tmux-navigator",
 		lazy = false, -- always needed
 	},
+
 	-- Hightlight
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -423,6 +424,14 @@ return {
 			leader_key = ";", -- Recommended to be a single key
 			buffer_leader_key = "m", -- Per Buffer Mappings
 		},
+	},
+
+	-- fcitx input method auto switch
+	{
+		"alohaia/fcitx.nvim",
+		config = function()
+			require("fcitx")({})
+		end,
 	},
 
 	-- leetcode problems
