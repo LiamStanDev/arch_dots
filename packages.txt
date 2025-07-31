@@ -266,6 +266,8 @@ oxygen-sounds
 palapeli
 parley
 partitionmanager
+paru
+paru-debug
 perf
 picmi
 pim-data-exporter

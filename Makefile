@@ -32,10 +32,8 @@ install:
 
 ## --- 系統升級 + 快照 ---
 upgrade:
-	@echo "⬆️  Upgrading system with snapshot..."
-	@NOW=$$(date +%Y%m%d-%H%M%S); \
-	sudo btrfs su snap / $(SNAPSHOT_PATH)/root-$$NOW && \
-	sudo btrfs su snap /home $(SNAPSHOT_PATH)/home-$$NOW
+	@echo "⬆️  Upgrading system..."
+	@make snapshot
 	@paru -Syu
 
 ## --- 產生最新手動安裝的套件清單 ---

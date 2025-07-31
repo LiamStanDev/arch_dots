@@ -86,14 +86,17 @@ fzf.setup({
 		cwd_prompt = false,
 	},
 	actions = {
-		["enter"] = actions.file_edit_or_qf,
-		["ctrl-x"] = actions.file_split,
-		["ctrl-v"] = actions.file_vsplit,
-		["ctrl-t"] = actions.file_tabedit,
-		["alt-q"] = actions.file_sel_to_qf,
-		["alt-Q"] = actions.file_sel_to_ll,
-		["alt-i"] = actions.toggle_ignore,
-		["alt-h"] = actions.toggle_hidden,
-		["alt-f"] = actions.toggle_follow,
+		files = {
+			-- true, -- inherit from default
+			["enter"] = actions.file_edit_or_qf,
+			["ctrl-x"] = actions.file_split,
+			["ctrl-v"] = actions.file_vsplit,
+			["ctrl-t"] = actions.file_tabedit,
+			["alt-q"] = actions.file_sel_to_qf,
+			["alt-Q"] = actions.file_sel_to_ll,
+			["alt-i"] = actions.toggle_ignore,
+			["alt-h"] = actions.toggle_hidden,
+			["alt-f"] = actions.toggle_follow,
+		},
 	},
 })
