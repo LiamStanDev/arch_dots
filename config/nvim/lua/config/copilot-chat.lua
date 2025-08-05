@@ -11,32 +11,50 @@ return function()
 	})
 
 	require("CopilotChat").setup({
-		window = {
-			layout = "vertical", -- 'vertical', 'horizontal', 'float', 'replace'
-			width = 0.35, -- fractional width of parent, or absolute width in columns when > 1
-			height = 0.3, -- fractional height of parent, or absolute height in rows when > 1
-		},
 
 		model = "gpt-4.1", -- stable
-		-- model = "claude-3.7-sonnet", -- unstable
+		temperature = 0.1,
 
 		-- see: https://github.com/CopilotC-Nvim/CopilotChat.nvim?tab=readme-ov-file#contexts
 		sticky = {
 			"#buffer", -- current buffer content
 		},
 
+		window = {
+			layout = "vertical", -- 'vertical', 'horizontal', 'float', 'replace'
+			width = 0.35, -- fractional width of parent, or absolute width in columns when > 1
+			height = 0.3, -- fractional height of parent, or absolute height in rows when > 1
+			title = "🤖 AI Assistant",
+		},
+
+		headers = {
+			user = "👤 You: ",
+			assistant = "🤖 Copilot: ",
+			tool = "🔧 Tool: ",
+		},
+		separator = "━━",
+		show_folds = false, -- Disable folding for cleaner look
+
 		show_help = false,
 		auto_insert_mode = false,
 		highlight_selection = true,
 
-		-- for render markdown
-		highlight_headers = false,
-		separator = "",
-		error_header = "> [!ERROR] Error ",
-		question_header = "#   " .. user .. " ",
-		answer_header = "#   Copilot ",
+		vim.api.nvim_create_autocmd("BufEnter", {
+			pattern = "copilot-*",
+			callback = function()
+				vim.opt_local.relativenumber = false
+				vim.opt_local.number = false
+				vim.opt_local.conceallevel = 0
+			end,
+		}),
 
-		-- log_level = "debug",
+		vim.api.nvim_set_hl(0, "CopilotChatHeader", { fg = "#7C3AED", bold = true }),
+		vim.api.nvim_set_hl(0, "CopilotChatSeparator", { fg = "#374151" }),
+		vim.api.nvim_set_hl(0, "CopilotChatKeyword", { fg = "#10B981", italic = true }),
+
+		selection = function(source)
+			return require("CopilotChat.select").visual(source) or require("CopilotChat.select").line(source)
+		end,
 
 		prompts = {
 			Explain = {

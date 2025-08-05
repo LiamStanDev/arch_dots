@@ -317,7 +317,7 @@ return {
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
 		dependencies = {
-			{ "zbirenbaum/copilot.lua", event = "InsertEnter", config = true },
+			-- { "zbirenbaum/copilot.lua", event = "InsertEnter", config = true },
 			{ "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
 		},
 		branch = "main",
