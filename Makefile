@@ -48,7 +48,7 @@ install:
 	@if [ ! -f packages.txt ]; then \
 		echo "❌ packages.txt not found."; exit 1; \
 	fi
-	@paru -S --needed --noconfirm $$(grep -vE '^\s*#|^\s*$$' packages.txt)
+	@paru -S --needed $$(grep -vE '^\s*#|^\s*$$' packages.txt)
 
 ## --- 系統升級 + 快照 ---
 upgrade:
