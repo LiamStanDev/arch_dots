@@ -12,9 +12,6 @@ zi light "zsh-users/zsh-completions"
 autoload -U compinit
 compinit
 
-# Custom functions
-source "$HOME/.config/zsh/functions.zsh"
-
 # Plugins
 zi light "zsh-users/zsh-history-substring-search"
 zi light "zsh-users/zsh-autosuggestions"

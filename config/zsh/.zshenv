@@ -1,19 +1,22 @@
 # Environment and PATH exports
 
+# Custom functions
+source "$HOME/.config/zsh/functions.zsh"
+
 # usr
-PATH="$HOME/.local/bin:$PATH"
-PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
+add_path "$HOME/.local/bin"
+add_path "$HOME/.local/share/nvim/mason/bin"
 
 # nodejs
 export PNPM_HOME="$HOME/.pnpm"
-PATH="$PNPM_HOME:$PATH"
+add_path "$PNPM_HOME"
 
 # go
-PATH=$HOME/go/bin:$PATH
+add_path "$HOME/go/bin"
 
 # rust
 export RUSTPATH="$HOME/.cargo/bin"
-PATH="$RUSTPATH:$PATH"
+add_path "$RUSTPATH"
 
 # History options
 HISTSIZE="10000"
