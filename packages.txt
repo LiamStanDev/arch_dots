@@ -239,6 +239,7 @@ linux-firmware
 linux-headers
 lokalize
 lskat
+lynx
 man-db
 man-pages
 mangohud
@@ -345,6 +346,9 @@ virt-manager
 virt-viewer
 visual-studio-code-bin
 wacomtablet
+webkit2gtk
+webkit2gtk-4.1
+webkit2gtk-4.1-docs
 wget
 wireplumber
 wl-clipboard
