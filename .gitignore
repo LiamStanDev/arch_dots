@@ -1,2 +1,3 @@
 config/zsh/.zcompdump
 local/fonts/.uuid
+config/tmux/plugins
