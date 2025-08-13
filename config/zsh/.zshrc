@@ -9,8 +9,9 @@ FPATH="$HOME/.zfunc:$FPATH"
 zi light "zsh-users/zsh-completions"
 
 # Enable completion
-autoload -U compinit
-compinit
+autoload bashcompinit && bashcompinit # for support bash style completion
+autoload -Uz compinit && compinit # U: autoload, z: autoload completion functions
+complete -C "$(which aws_completer)" aws # this is bash style completion
 
 # Plugins
 zi light "zsh-users/zsh-history-substring-search"

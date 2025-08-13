@@ -1,7 +1,7 @@
 TARGET_HOME := ~
 TARGET_CONFIG := ~/.config
 TARGET_LOCAL := ~/.local/share
-SNAPSHOT_PATH := /snapshots
+SNAPSHOT_PATH := /.snapshots
 SNAPSHOT_RETAIN := 5
 
 .PHONY: link unlink snapshot install upgrade refresh-package-list reset-audio
