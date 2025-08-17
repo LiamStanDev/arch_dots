@@ -3,3 +3,6 @@ scan_timeout = 10
 
 [container]
 disabled = true
+
+[aws]
+disabled = true
