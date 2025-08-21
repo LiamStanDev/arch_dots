@@ -24,6 +24,9 @@ return {
 				},
 				autoImportCompletions = true,
 				useLibraryCodeForTypes = true,
+				diagnosticSeverityOverrides = {
+					reportOptionalMemberAccess = false,
+				},
 			},
 		},
 	},

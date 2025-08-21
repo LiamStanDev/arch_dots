@@ -26,7 +26,7 @@ snapshot:
 	@echo "📸 Creating btrfs snapshots..."
 	@NOW=$$(date +%Y%m%d-%H%M%S); \
 	sudo btrfs su snap / $(SNAPSHOT_PATH)/root-$$NOW && \
-	sudo btrfs su snap /home $(SNAPSHOT_PATH)/home-$$NOW
+	# sudo btrfs su snap /home $(SNAPSHOT_PATH)/home-$$NOW
 
 delete-old-snapshots:
 	@echo "🗑️  Deleting all but latest $(SNAPSHOT_RETAIN) snapshots..."
@@ -35,12 +35,11 @@ delete-old-snapshots:
 		| sort \
 		| head -n -$(SNAPSHOT_RETAIN) \
 		| xargs --no-run-if-empty -r sudo btrfs subvolume delete
-	@echo "→ 清理 home snapshots"
-	@fd '^home-' --max-depth=1 --type d $(SNAPSHOT_PATH) \
-		| sort \
-		| head -n -$(SNAPSHOT_RETAIN) \
-		| xargs --no-run-if-empty -r sudo btrfs subvolume delete
-	@echo "✅ Old snapshots deleted (保留最新 $(SNAPSHOT_RETAIN) 筆)."
+	# @echo "→ 清理 home snapshots"
+	# @fd '^home-' --max-depth=1 --type d $(SNAPSHOT_PATH) \
+	# 	| sort \
+	# 	| xargs --no-run-if-empty -r sudo btrfs subvolume delete
+	# @echo "✅ Old snapshots deleted (保留最新 $(SNAPSHOT_RETAIN) 筆)."
 
 ## --- 套件安裝（來自 package list） ---
 install:
@@ -53,7 +52,7 @@ install:
 ## --- 系統升級 + 快照 ---
 upgrade:
 	@echo "⬆️  Upgrading system..."
-	@make snapshot
+	# @make snapshot
 	@paru -Syu
 	@make reset-audio
 
