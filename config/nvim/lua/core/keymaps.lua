@@ -64,6 +64,7 @@ local keymaps = {
 
 	-- Quit
 	{ mode = "n", key = "<leader>q", action = "<CMD>confirm q<CR>", desc = "Quit" },
+	{ mode = "n", key = "<leader>C", action = "<CMD>confirm qa<CR>", desc = "Quit all" },
 
 	-- Configuration
 	-- { mode = "n", key = "<leader>;", action = "<CMD>e $MYVIMRC<CR>", desc = "Configuration" },
