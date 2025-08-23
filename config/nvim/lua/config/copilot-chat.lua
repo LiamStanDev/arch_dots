@@ -62,29 +62,91 @@ return function()
 
 		prompts = {
 			Explain = {
-				prompt = "Write an explanation for the selected code as paragraphs of text.",
+				prompt = [[Explain the selected code in detail. 
+Write it as clear paragraphs for software engineers, 
+covering its purpose, how it works, and any key algorithms or logic used.]],
 				system_prompt = "COPILOT_EXPLAIN",
 			},
 			Review = {
-				prompt = "Review the selected code.",
+				prompt = [[Perform a code review of the selected code. 
+Check for correctness, readability, maintainability, performance, 
+security concerns, and coding best practices. 
+Provide constructive feedback and concrete suggestions.]],
 				system_prompt = "COPILOT_REVIEW",
 			},
 			Fix = {
-				prompt = "There is a problem in this code. Identify the issues and rewrite the code with fixes. Explain what was wrong and how your changes address the problems.",
+				prompt = [[The selected code contains problems. 
+Identify the issues (bugs, anti-patterns, or potential runtime errors). 
+Rewrite the code with fixes and explain: 
+1. What was wrong, 
+2. How your changes address the problems, 
+3. Why the new version is safer or better.]],
 			},
 			Optimize = {
-				prompt = "Optimize the selected code to improve performance and readability. Explain your optimization strategy and the benefits of your changes.",
+				prompt = [[Optimize the selected code to improve clarity, 
+performance, and maintainability. 
+Explain your optimization strategy and the benefits. 
+Prefer readability and idiomatic usage of the language.]],
 			},
 			Docs = {
-				prompt = "Please add documentation comments to the selected code.",
+				prompt = [[Add documentation comments to the selected code. 
+Use the language’s standard documentation style (e.g., Javadoc, 
+docstrings, XML comments). Cover parameters, return values, 
+side effects, and usage notes.]],
 			},
 			Tests = {
-				prompt = "Please generate tests for my code.",
+				prompt = [[Generate tests for the selected code. 
+Include typical cases, edge cases, and error handling. 
+Use the common testing framework for this language.]],
 			},
 			Commit = {
-				prompt = "Write commit message for the change with commitizen convention. Keep the title under 50 characters and wrap message at 72 characters. Format as a gitcommit code block.",
+				prompt = [[Write a commit message for the staged changes 
+following the Conventional Commits specification. 
+- Keep the title under 50 characters, imperative mood. 
+- Wrap the body at 72 characters. 
+- Explain the motivation and effect of the change. 
+Output as a ```gitcommit``` block.]],
 				context = "git:staged",
 			},
+			Polish = {
+				prompt = [[Rewrite the selected English phrase 
+to be more clear, professional, and grammatically correct, 
+while keeping it concise for programmers.]],
+			},
+		},
+		Refactor = {
+			prompt = [[Refactor the selected code to improve structure, 
+reduce duplication, and follow clean code principles. 
+Preserve functionality but enhance readability and maintainability.]],
+		},
+		Security = {
+			prompt = [[Review the selected code for security issues. 
+Look for vulnerabilities such as injection, unsafe data handling, 
+buffer overflows, or insecure API usage. Suggest safer alternatives.]],
+		},
+		Typing = {
+			prompt = [[Add type annotations or type hints to the selected code. 
+Follow the language's standard type system and explain unclear cases.]],
+		},
+		Architecture = {
+			prompt = [[Suggest architectural improvements for this code snippet. 
+Consider design patterns, separation of concerns, 
+testability, and long-term maintainability.]],
+		},
+		Logging = {
+			prompt = [[Add logging to the selected code. 
+Log key steps, errors, and edge cases using idiomatic logging practices 
+of this language/framework. Avoid excessive noise.]],
+		},
+		ErrorHandling = {
+			prompt = [[Improve error handling in the selected code. 
+Add meaningful error messages, safe fallbacks, 
+and ensure errors propagate correctly.]],
+		},
+		Style = {
+			prompt = [[Rewrite the selected code to conform to the official 
+style guide of the language (e.g., PEP8 for Python, 
+Google Java Style, Rustfmt). Keep functionality identical.]],
 		},
 	})
 
