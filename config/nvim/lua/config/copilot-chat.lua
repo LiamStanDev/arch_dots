@@ -113,40 +113,40 @@ Output as a ```gitcommit``` block.]],
 to be more clear, professional, and grammatically correct, 
 while keeping it concise for programmers.]],
 			},
-		},
-		Refactor = {
-			prompt = [[Refactor the selected code to improve structure, 
+			Refactor = {
+				prompt = [[Refactor the selected code to improve structure, 
 reduce duplication, and follow clean code principles. 
 Preserve functionality but enhance readability and maintainability.]],
-		},
-		Security = {
-			prompt = [[Review the selected code for security issues. 
+			},
+			Security = {
+				prompt = [[Review the selected code for security issues. 
 Look for vulnerabilities such as injection, unsafe data handling, 
 buffer overflows, or insecure API usage. Suggest safer alternatives.]],
-		},
-		Typing = {
-			prompt = [[Add type annotations or type hints to the selected code. 
+			},
+			Typing = {
+				prompt = [[Add type annotations or type hints to the selected code. 
 Follow the language's standard type system and explain unclear cases.]],
-		},
-		Architecture = {
-			prompt = [[Suggest architectural improvements for this code snippet. 
+			},
+			Architecture = {
+				prompt = [[Suggest architectural improvements for this code snippet. 
 Consider design patterns, separation of concerns, 
 testability, and long-term maintainability.]],
-		},
-		Logging = {
-			prompt = [[Add logging to the selected code. 
+			},
+			Logging = {
+				prompt = [[Add logging to the selected code. 
 Log key steps, errors, and edge cases using idiomatic logging practices 
 of this language/framework. Avoid excessive noise.]],
-		},
-		ErrorHandling = {
-			prompt = [[Improve error handling in the selected code. 
+			},
+			ErrorHandling = {
+				prompt = [[Improve error handling in the selected code. 
 Add meaningful error messages, safe fallbacks, 
 and ensure errors propagate correctly.]],
-		},
-		Style = {
-			prompt = [[Rewrite the selected code to conform to the official 
+			},
+			Style = {
+				prompt = [[Rewrite the selected code to conform to the official 
 style guide of the language (e.g., PEP8 for Python, 
 Google Java Style, Rustfmt). Keep functionality identical.]],
+			},
 		},
 	})
 
