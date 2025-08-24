@@ -13,6 +13,7 @@ audex
 audiocd-kio
 audiotube
 aurorae
+aws-cli-v2
 base
 base-devel
 blinken
@@ -34,6 +35,7 @@ catppuccin-plasma-colorscheme-macchiato
 cervisia
 cni-plugins
 colord-kde
+conky
 coolercontrol-bin
 direnv
 discover
@@ -61,6 +63,7 @@ fcitx5-rime
 fd
 ffmpegthumbs
 filelight
+fio
 flatpak-kcm
 francis
 fuse-overlayfs
@@ -68,6 +71,7 @@ fwupd
 fzf
 gamemode
 gamescope
+geekbench
 ghostty
 ghostwriter
 git
@@ -234,12 +238,12 @@ layer-shell-qt
 libkscreen
 libksysguard
 libplasma
+libreoffice-still
 linux
 linux-firmware
 linux-headers
 lokalize
 lskat
-lynx
 man-db
 man-pages
 mangohud
@@ -254,11 +258,8 @@ neochat
 neovim
 networkmanager
 noto-fonts-cjk
+npm
 ntfs-3g
-nvidia
-nvidia-container-toolkit
-nvidia-settings
-nvidia-utils
 ocean-sound-theme
 okular
 openssh
@@ -275,6 +276,8 @@ pim-data-exporter
 pim-sieve-editor
 pipewire
 pipewire-alsa
+pipewire-jack
+pipewire-pulse
 plasma-activities
 plasma-activities-stats
 plasma-browser-integration
@@ -318,9 +321,9 @@ spectacle
 speedtest-cli
 spice-vdagent
 starship
-steam
 step
 stow
+stress-ng
 sudo
 svgpart
 sweeper
@@ -328,7 +331,6 @@ swtpm
 sysstat
 systemsettings
 telly-skout
-texinfo
 thermald
 throttled
 timeshift
@@ -346,9 +348,6 @@ virt-manager
 virt-viewer
 visual-studio-code-bin
 wacomtablet
-webkit2gtk
-webkit2gtk-4.1
-webkit2gtk-4.1-docs
 wget
 wireplumber
 wl-clipboard
