@@ -61,91 +61,87 @@ return function()
 		end,
 
 		prompts = {
-			Explain = {
-				prompt = [[Explain the selected code in detail. 
-Write it as clear paragraphs for software engineers, 
-covering its purpose, how it works, and any key algorithms or logic used.]],
-				system_prompt = "COPILOT_EXPLAIN",
+			Fix = {
+				prompt = [[Identify problems in the selected code (bugs, anti-patterns, runtime risks). 
+Rewrite with fixes and explain why your version is safer and better.]],
+				system_prompt = "You are a bug fixer who always explains the root cause and solution.",
 			},
 			Review = {
-				prompt = [[Perform a code review of the selected code. 
+				prompt = [[Perform a professional code review. 
 Check for correctness, readability, maintainability, performance, 
-security concerns, and coding best practices. 
-Provide constructive feedback and concrete suggestions.]],
-				system_prompt = "COPILOT_REVIEW",
-			},
-			Fix = {
-				prompt = [[The selected code contains problems. 
-Identify the issues (bugs, anti-patterns, or potential runtime errors). 
-Rewrite the code with fixes and explain: 
-1. What was wrong, 
-2. How your changes address the problems, 
-3. Why the new version is safer or better.]],
+and security issues. Suggest concrete improvements.]],
+				system_prompt = "You are a strict code reviewer. Be concise but thorough, focusing on engineering best practices.",
 			},
 			Optimize = {
-				prompt = [[Optimize the selected code to improve clarity, 
-performance, and maintainability. 
-Explain your optimization strategy and the benefits. 
-Prefer readability and idiomatic usage of the language.]],
+				prompt = [[Optimize the code for readability, performance, and maintainability. 
+Prefer idiomatic usage of the language. Explain your reasoning.]],
+				system_prompt = "You are an expert in performance and clean code.",
 			},
 			Docs = {
-				prompt = [[Add documentation comments to the selected code. 
-Use the language’s standard documentation style (e.g., Javadoc, 
-docstrings, XML comments). Cover parameters, return values, 
-side effects, and usage notes.]],
+				prompt = [[Add documentation comments using the language’s standard style. 
+Cover parameters, return values, side effects, and usage.]],
+				system_prompt = "You are a technical writer for engineers.",
 			},
 			Tests = {
-				prompt = [[Generate tests for the selected code. 
-Include typical cases, edge cases, and error handling. 
-Use the common testing framework for this language.]],
-			},
-			Commit = {
-				prompt = [[Write a commit message for the staged changes 
-following the Conventional Commits specification. 
-- Keep the title under 50 characters, imperative mood. 
-- Wrap the body at 72 characters. 
-- Explain the motivation and effect of the change. 
-Output as a ```gitcommit``` block.]],
-				context = "git:staged",
-			},
-			Polish = {
-				prompt = [[Rewrite the selected English phrase 
-to be more clear, professional, and grammatically correct, 
-while keeping it concise for programmers.]],
-			},
-			Refactor = {
-				prompt = [[Refactor the selected code to improve structure, 
-reduce duplication, and follow clean code principles. 
-Preserve functionality but enhance readability and maintainability.]],
-			},
-			Security = {
-				prompt = [[Review the selected code for security issues. 
-Look for vulnerabilities such as injection, unsafe data handling, 
-buffer overflows, or insecure API usage. Suggest safer alternatives.]],
-			},
-			Typing = {
-				prompt = [[Add type annotations or type hints to the selected code. 
-Follow the language's standard type system and explain unclear cases.]],
-			},
-			Architecture = {
-				prompt = [[Suggest architectural improvements for this code snippet. 
-Consider design patterns, separation of concerns, 
-testability, and long-term maintainability.]],
+				prompt = [[Generate unit tests for the code. 
+Cover normal, edge, and error cases. Use common testing framework.]],
+				system_prompt = "You are a QA engineer writing tests.",
 			},
 			Logging = {
-				prompt = [[Add logging to the selected code. 
-Log key steps, errors, and edge cases using idiomatic logging practices 
-of this language/framework. Avoid excessive noise.]],
+				prompt = [[Add meaningful logging. 
+Log key steps, errors, and edge cases. Avoid excessive noise.]],
+				system_prompt = "You are a backend engineer adding production-ready logging.",
 			},
 			ErrorHandling = {
-				prompt = [[Improve error handling in the selected code. 
-Add meaningful error messages, safe fallbacks, 
-and ensure errors propagate correctly.]],
+				prompt = [[Improve error handling. 
+Add safe fallbacks, meaningful messages, and ensure proper propagation.]],
+				system_prompt = "You are a reliability engineer focused on robust error handling.",
+			},
+			Commit = {
+				prompt = [[Write a commit message for staged changes 
+following Conventional Commits. Keep title <50 chars, imperative. 
+Wrap body at 72 chars. Explain motivation + effect. 
+Output as ```gitcommit``` block.]],
+				context = "git:staged",
+				system_prompt = "You are an experienced software engineer writing clear commit messages.",
+			},
+			Polish = {
+				prompt = [[Rewrite the English text to be clear, professional, 
+and concise. Keep the technical meaning intact.]],
+				system_prompt = "You are an English editor for software documentation.",
+			},
+			Refactor = {
+				prompt = [[Refactor the code to reduce duplication, 
+improve structure, and follow clean code principles. 
+Preserve behavior, but make it more maintainable.]],
+				system_prompt = "You are a clean code expert and refactoring coach.",
+			},
+			Explain = {
+				prompt = [[Explain the selected code clearly and in detail. 
+Cover purpose, logic, and key algorithms. 
+Use structured paragraphs for engineers.]],
+				system_prompt = "You are a senior software engineer explaining code to peers.",
+			},
+			Security = {
+				prompt = [[Review code for security risks: 
+injection, unsafe data handling, overflows, insecure API usage. 
+Suggest safer alternatives.]],
+				system_prompt = "You are a security auditor. Prioritize safety and real-world risks.",
+			},
+			Typing = {
+				prompt = [[Add type annotations or hints to the code. 
+Follow the language’s standard typing practices. Explain unclear cases.]],
+				system_prompt = "You are a type system specialist.",
+			},
+			Architecture = {
+				prompt = [[Suggest architectural improvements: 
+design patterns, separation of concerns, testability, long-term maintainability.]],
+				system_prompt = "You are a software architect. Focus on scalability and clarity.",
 			},
 			Style = {
-				prompt = [[Rewrite the selected code to conform to the official 
-style guide of the language (e.g., PEP8 for Python, 
-Google Java Style, Rustfmt). Keep functionality identical.]],
+				prompt = [[Rewrite code to conform to the official style guide 
+(e.g., PEP8, Rustfmt, Google Java Style). Preserve functionality.]],
+				system_prompt = "You are a style guide enforcer.",
 			},
 		},
 	})
