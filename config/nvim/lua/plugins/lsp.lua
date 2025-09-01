@@ -39,6 +39,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "gI", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, { desc = "Toggle Inlay Hint" })
     map("n", "gH", function() vim.cmd("checkhealth vim.lsp") end, { desc = "Check LSP Health" })
     map("n", "gR", function() vim.lsp.stop_client(vim.lsp.get_clients()) vim.defer_fn(function() vim.cmd("edit") end, 2000) end, { desc = "Lsp Restart" })
+    map("n", "gS", function() vim.lsp.stop_client(vim.lsp.get_clients()) end, { desc = "Lsp Stop" })
     -- ctrl + s is default to vim.lsp.buf.signature_help()
     map({ "n", "v", "i" }, "<C-s>", function() vim.lsp.buf.signature_help() end, { desc = "Show Signature" })
     map("n", "[d", function() vim.diagnostic.goto_prev() end, { desc = "Go to previous diagnostic" })
