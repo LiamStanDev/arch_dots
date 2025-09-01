@@ -1,5 +1,4 @@
 # Environment and PATH exports
-
 # Custom functions
 source "$HOME/.config/zsh/functions.zsh"
 
@@ -8,7 +7,11 @@ add_path "$HOME/.local/bin"
 add_path "$HOME/.local/share/nvim/mason/bin"
 
 # nodejs
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 export PNPM_HOME="$HOME/.pnpm"
+# npm config set strict-ssl false # For the first time (Cathay)
 add_path "$PNPM_HOME"
 
 # go
@@ -36,3 +39,4 @@ unsetopt EXTENDED_HISTORY       # Don't save timestamps
 # Default
 export EDITOR="nvim"
 export VISUAL="$EDITOR"
+. "$HOME/.cargo/env"

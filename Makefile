@@ -12,14 +12,12 @@ link:
 	@stow -v --target $(TARGET_HOME) home
 	@stow -v --target $(TARGET_CONFIG) config
 	@stow -v --target $(TARGET_LOCAL) local
-	@fc-cache -f
 
 unlink:
 	@echo "❌ Unlinking dotfiles..."
 	@stow -v --target $(TARGET_HOME) -D home
 	@stow -v --target $(TARGET_CONFIG) -D config
 	@stow -v --target $(TARGET_LOCAL) -D local
-	@fc-cache -f
 
 ## --- Btrfs 快照管理 ---
 snapshot:

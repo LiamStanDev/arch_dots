@@ -1,10 +1,9 @@
 # Custom functions
-
-log() {
+function log() {
   echo "[+] $*"
 }
 
-tmux_kill_fzf() {
+function tmux_kill_fzf() {
   local session=$(tmux ls | fzf | awk -F: '{print $1}')
   if [[ -n "$session" ]]; then
     read -q "REPLY?Kill session '$session'? [y/N] "
@@ -21,14 +20,14 @@ function y() {
   rm -f -- "$tmp"
 }
 
-add_path() {
+function add_path() {
   # check args is directory and not in PATH
   if [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]]; then
     export PATH="$1:$PATH"
   fi
 }
 
-add_path_append() {
+function add_path_append() {
   # check args is directory and not in PATH
   if [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]]; then
     export PATH="$PATH:$1"
