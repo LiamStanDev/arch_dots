@@ -39,4 +39,3 @@ unsetopt EXTENDED_HISTORY       # Don't save timestamps
 # Default
 export EDITOR="nvim"
 export VISUAL="$EDITOR"
-. "$HOME/.cargo/env"
