@@ -423,12 +423,12 @@ return {
 	},
 
 	-- fcitx input method auto switch
-	{
-		"alohaia/fcitx.nvim",
-		config = function()
-			require("fcitx")({})
-		end,
-	},
+	-- {
+	-- 	"alohaia/fcitx.nvim",
+	-- 	config = function()
+	-- 		require("fcitx")({})
+	-- 	end,
+	-- },
 
 	-- leetcode problems
 	-- {
