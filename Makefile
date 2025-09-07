@@ -19,25 +19,33 @@ unlink:
 	@stow -v --target $(TARGET_CONFIG) -D config
 	@stow -v --target $(TARGET_LOCAL) -D local
 
-## --- Btrfs 快照管理 ---
-snapshot:
-	@echo "📸 Creating btrfs snapshots..."
-	@NOW=$$(date +%Y%m%d-%H%M%S); \
-	sudo btrfs su snap / $(SNAPSHOT_PATH)/root-$$NOW && \
-	# sudo btrfs su snap /home $(SNAPSHOT_PATH)/home-$$NOW
 
-delete-old-snapshots:
-	@echo "🗑️  Deleting all but latest $(SNAPSHOT_RETAIN) snapshots..."
-	@echo "→ 清理 root snapshots"
-	@fd '^root-' --max-depth=1 --type d $(SNAPSHOT_PATH) \
-		| sort \
-		| head -n -$(SNAPSHOT_RETAIN) \
-		| xargs --no-run-if-empty -r sudo btrfs subvolume delete
-	# @echo "→ 清理 home snapshots"
-	# @fd '^home-' --max-depth=1 --type d $(SNAPSHOT_PATH) \
-	# 	| sort \
-	# 	| xargs --no-run-if-empty -r sudo btrfs subvolume delete
-	# @echo "✅ Old snapshots deleted (保留最新 $(SNAPSHOT_RETAIN) 筆)."
+## --- 系統升級 + 快照 ---
+upgrade:
+	@echo "⬆️  Upgrading system..."
+	@sudo dnf upgrade -y
+	@make refresh-package-list
+	@snapshot
+	@make reset-audio
+	
+## --- 產生最新手動安裝的套件清單 ---
+refresh-package-list:
+	@echo "📝 Saving manually installed packages to packages.txt..."
+	@dnf repoquery --userinstalled --qf '%{name}\n' > packages.txt
+
+
+## --- Timeshift 快照管理 ---
+snapshot:
+	@echo "📸 Creating new Timeshift snapshot..."
+	@sudo timeshift --create --comments "manual-$(shell date +%Y%m%d-%H%M%S)" --tags O
+
+snapshot-list:
+	@echo "📂 Listing Timeshift snapshots..."
+	@sudo timeshift --list
+
+snapshot-restore:
+	@echo "♻️  Restoring latest Timeshift snapshot..."
+	@sudo timeshift --restore
 
 ## --- 套件安裝（來自 package list） ---
 install:
@@ -45,20 +53,7 @@ install:
 	@if [ ! -f packages.txt ]; then \
 		echo "❌ packages.txt not found."; exit 1; \
 	fi
-	@paru -S --needed $$(grep -vE '^\s*#|^\s*$$' packages.txt)
-
-## --- 系統升級 + 快照 ---
-upgrade:
-	@echo "⬆️  Upgrading system..."
-	# @make snapshot
-	@paru -Syu
-	@make reset-audio
-
-## --- 產生最新手動安裝的套件清單 ---
-refresh-package-list:
-	@echo "📝 Saving manually installed packages to packages.txt..."
-	@paru -Qeq > packages.txt
-
+	@sudo dnf install -y $$(grep -vE '^\s*#|^\s*$$' packages.txt)
 
 
 ## -- Miscs --
