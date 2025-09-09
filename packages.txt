@@ -89,6 +89,7 @@ dnsmasq
 dolphin
 dos2unix
 dosfstools
+dotnet-sdk-8.0
 dracut-config-rescue
 dracut-live
 dracut-network
@@ -122,6 +123,7 @@ fzf
 ghostscript
 ghostty
 git
+git-delta
 glibc
 glibc-all-langpacks
 gnupg2
@@ -236,6 +238,7 @@ krfb
 kscreen
 kscreenlocker
 ksshaskpass
+kubernetes1.29-client
 kwalletmanager5
 kwebkitpart
 kwin
@@ -330,6 +333,7 @@ plymouth
 plymouth-kcm
 plymouth-system-theme
 pnpm
+podman-compose
 podman-docker
 policycoreutils
 polkit-kde
@@ -389,6 +393,7 @@ tar
 tcpdump
 teamd
 time
+timeshift
 tiwilink-firmware
 toolbox
 traceroute

@@ -1,3 +1,11 @@
 config/zsh/.zcompdump
 local/fonts/.uuid
 config/tmux/plugins
+
+# VSCode
+config/Code/**/*
+!config/Code/User/
+!config/Code/User/keybindings.json
+!config/Code/User/settings.json
+!config/Code/User/snippets/
+!config/Code/User/snippets/*.json

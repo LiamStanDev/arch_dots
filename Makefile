@@ -25,7 +25,7 @@ upgrade:
 	@echo "⬆️  Upgrading system..."
 	@sudo dnf upgrade -y
 	@make refresh-package-list
-	@snapshot
+	@make snapshot
 	@make reset-audio
 	
 ## --- 產生最新手動安裝的套件清單 ---
@@ -37,7 +37,7 @@ refresh-package-list:
 ## --- Timeshift 快照管理 ---
 snapshot:
 	@echo "📸 Creating new Timeshift snapshot..."
-	@sudo timeshift --create --comments "manual-$(shell date +%Y%m%d-%H%M%S)" --tags O
+	@sudo timeshift --create --comments "manual-$(shell date +%Y%m%d-%H%M%S)" --tags D
 
 snapshot-list:
 	@echo "📂 Listing Timeshift snapshots..."
