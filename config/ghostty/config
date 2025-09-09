@@ -4,9 +4,9 @@ window-padding-x = 10, 10
 window-padding-y = 4, 7
 
 # Font Configuration
-font-family = JetBrains Mono
-font-family = CaskaydiaCove Nerd Font
+font-family = JetBrainsMono Nerd Font
 font-family = LXGW WenKai Mono TC
+font-family = CaskaydiaCove Nerd Font
 # font-family = Yozai
 font-family = Noto Color Emoji
 font-size = 13
