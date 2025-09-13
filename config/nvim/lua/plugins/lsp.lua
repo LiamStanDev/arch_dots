@@ -93,9 +93,9 @@ vim.diagnostic.config({
 		text = diagnostic_signs,
 	},
 	-- virtual_text = {
-	--   source = "always",
-	--   prefix = "●",
-	--   spacing = 2,
+	-- 	source = "always",
+	-- 	prefix = "●",
+	-- 	spacing = 2,
 	-- },
 	-- virtual_lines = { current_line = true },
 })
@@ -107,7 +107,7 @@ return {
 		event = "VeryLazy",
 		config = function()
 			require("mason").setup({
-				PATH = "append", -- "prepend", "append", "skip"
+				PATH = "prepend", -- "prepend", "append", "skip"
 				pip = {
 					upgrade_pip = true,
 				},
