@@ -23,12 +23,18 @@ upgrade:
 	@echo "⬆️  Upgrading system..."
 	@sudo dnf upgrade -y
 	@make refresh-package-list
+	@flatpak update -y
+	@make refresh-flatpak-list
 	@make reset-audio
 	
 ## --- 產生最新手動安裝的套件清單 ---
 refresh-package-list:
 	@echo "📝 Saving manually installed packages to packages.txt..."
 	@dnf repoquery --userinstalled --qf '%{name}\n' > packages.txt
+
+refresh-flatpak-list:
+	@echo "📝 Saving manually installed flatpak packages to flatpak-packages.txt..."
+	@flatpak list --app --columns=application,origin | awk '{print $$1 " " $$2}' > flatpak-packages.txt
 
 ## --- 套件安裝（來自 package list） ---
 install:
@@ -37,7 +43,10 @@ install:
 		echo "❌ packages.txt not found."; exit 1; \
 	fi
 	@sudo dnf install -y $$(grep -vE '^\s*#|^\s*$$' packages.txt)
-
+	@if [ ! -f flatpak-packages.txt ]; then \
+		echo "❌ flatpak-packages.txt not found."; exit 1; \
+	fi
+	@awk '{print $$2 " " $$1}' flatpak-packages.txt | xargs -L1 flatpak install -y --noninteractive
 
 ## -- Miscs --
 reset-audio:

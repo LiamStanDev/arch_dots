@@ -263,6 +263,7 @@ libreoffice-math
 libreoffice-writer
 libva-intel-media-driver
 livesys-scripts
+lm_sensors
 logrotate
 lrzsz
 lsof

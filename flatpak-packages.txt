@@ -1,0 +1,11 @@
+app.zen_browser.zen flathub
+com.bitwarden.desktop flathub
+com.freerdp.FreeRDP flathub
+com.getpostman.Postman flathub
+com.github.tchx84.Flatseal flathub
+com.google.Chrome flathub
+io.podman_desktop.PodmanDesktop flathub
+md.obsidian.Obsidian flathub
+org.kde.okular flathub
+org.pgadmin.pgadmin4 flathub
+org.qbittorrent.qBittorrent flathub
