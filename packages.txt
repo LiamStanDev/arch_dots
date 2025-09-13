@@ -57,6 +57,7 @@ code
 colord
 colord-kde
 compsize
+containerd.io
 coreutils
 cpio
 crontabs
@@ -86,6 +87,10 @@ direnv
 dnf5
 dnf5-plugins
 dnsmasq
+docker-buildx-plugin
+docker-ce
+docker-ce-cli
+docker-compose-plugin
 dolphin
 dos2unix
 dosfstools
@@ -94,6 +99,7 @@ dracut-config-rescue
 dracut-live
 dracut-network
 dragon
+du-dust
 duf
 e2fsprogs
 ed
@@ -212,6 +218,7 @@ keditbookmarks
 kernel
 kernel-core
 kernel-modules
+kernel-modules-core
 kernel-modules-extra
 kexec-tools
 kf6-baloo-file
@@ -333,8 +340,6 @@ plymouth
 plymouth-kcm
 plymouth-system-theme
 pnpm
-podman-compose
-podman-docker
 policycoreutils
 polkit-kde
 ppp
@@ -395,7 +400,7 @@ teamd
 time
 timeshift
 tiwilink-firmware
-toolbox
+tldr
 traceroute
 trash-cli
 tree

@@ -1,10 +1,8 @@
 TARGET_HOME := ~
 TARGET_CONFIG := ~/.config
 TARGET_LOCAL := ~/.local/share
-SNAPSHOT_PATH := /.snapshots
-SNAPSHOT_RETAIN := 5
 
-.PHONY: link unlink snapshot install upgrade refresh-package-list reset-audio
+.PHONY: link unlink install upgrade refresh-package-list reset-audio
 
 ## --- Dotfiles 管理 ---
 link:
@@ -25,27 +23,12 @@ upgrade:
 	@echo "⬆️  Upgrading system..."
 	@sudo dnf upgrade -y
 	@make refresh-package-list
-	@make snapshot
 	@make reset-audio
 	
 ## --- 產生最新手動安裝的套件清單 ---
 refresh-package-list:
 	@echo "📝 Saving manually installed packages to packages.txt..."
 	@dnf repoquery --userinstalled --qf '%{name}\n' > packages.txt
-
-
-## --- Timeshift 快照管理 ---
-snapshot:
-	@echo "📸 Creating new Timeshift snapshot..."
-	@sudo timeshift --create --comments "manual-$(shell date +%Y%m%d-%H%M%S)" --tags D
-
-snapshot-list:
-	@echo "📂 Listing Timeshift snapshots..."
-	@sudo timeshift --list
-
-snapshot-restore:
-	@echo "♻️  Restoring latest Timeshift snapshot..."
-	@sudo timeshift --restore
 
 ## --- 套件安裝（來自 package list） ---
 install:
