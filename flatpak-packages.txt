@@ -1,9 +1,12 @@
 app.zen_browser.zen flathub
 com.bitwarden.desktop flathub
+com.discordapp.Discord flathub
 com.freerdp.FreeRDP flathub
 com.getpostman.Postman flathub
-com.github.tchx84.Flatseal flathub
+com.github.IsmaelMartinez.teams_for_linux flathub
 com.google.Chrome flathub
+com.usebottles.bottles flathub
+io.dbeaver.DBeaverCommunity flathub
 io.podman_desktop.PodmanDesktop flathub
 md.obsidian.Obsidian flathub
 org.kde.okular flathub
