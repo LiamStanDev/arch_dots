@@ -305,6 +305,8 @@ paps
 parted
 passwdqc
 pciutils
+pdsh
+pdsh-rcmd-ssh
 perf
 phonon-qt6-backend-vlc
 pinentry-qt
