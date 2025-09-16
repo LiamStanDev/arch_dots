@@ -39,6 +39,7 @@ basesystem
 bash
 bash-color-prompt
 bash-completion
+bat
 bc
 bind-utils
 bluedevil
