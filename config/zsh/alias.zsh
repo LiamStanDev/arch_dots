@@ -111,9 +111,10 @@ fi
 
 # docker
 if command -v docker &>/dev/null; then
-  alias -- dps='docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}\t{{.ID}}\t{{.Image}}"'
+  alias -- dps='docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}\t{{.ID}}\t{{.Image}}\t{{.Size}}"'
   alias -- dsh="docker exec -it"
-  alias -- dl="docker logs --tail=100"
+  alias -- db="docker buildx build -f"
+  alias -- dl="docker logs -f --tail=100"
   alias -- dc="docker compose"
 else
   log "missing docker"
