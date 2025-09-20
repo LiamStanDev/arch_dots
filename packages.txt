@@ -156,6 +156,7 @@ gtk3-immodule-xim
 gutenprint
 gutenprint-cups
 gwenview
+helm
 hfsplus-tools
 hostname
 hplip
