@@ -18,7 +18,7 @@ unlink:
 	@stow -v --target $(TARGET_LOCAL) -D local
 
 
-## --- 系統升級 + 快照 ---
+## --- 系統升級 ---
 upgrade:
 	@echo "⬆️  Upgrading system..."
 	@sudo dnf upgrade -y
