@@ -22,6 +22,7 @@
   "lualine.nvim": { "branch": "master", "commit": "b8c23159c0161f4b89196f74ee3a6d02cdc3a955" },
   "mason-tool-installer.nvim": { "branch": "main", "commit": "517ef5994ef9d6b738322664d5fdd948f0fdeb46" },
   "mason.nvim": { "branch": "main", "commit": "b3689a41dd77e5294498dba9757fb22cc80cbebd" },
+  "mcphub.nvim": { "branch": "main", "commit": "8ff40b5edc649959bb7e89d25ae18e055554859a" },
   "mini.pairs": { "branch": "main", "commit": "69864a2efb36c030877421634487fd90db1e4298" },
   "mini.surround": { "branch": "main", "commit": "5aab42fcdcf31fa010f012771eda5631c077840a" },
   "noice.nvim": { "branch": "main", "commit": "0427460c2d7f673ad60eb02b35f5e9926cf67c59" },
@@ -48,5 +49,5 @@
   "vim-dadbod-completion": { "branch": "master", "commit": "a8dac0b3cf6132c80dc9b18bef36d4cf7a9e1fe6" },
   "vim-tmux-navigator": { "branch": "master", "commit": "c45243dc1f32ac6bcf6068e5300f3b2b237e576a" },
   "which-key.nvim": { "branch": "main", "commit": "904308e6885bbb7b60714c80ab3daf0c071c1492" },
-  "yazi.nvim": { "branch": "main", "commit": "3f11a3afc3d2d197cb944bd3c453c0b2f85024c1" }
+  "yazi.nvim": { "branch": "main", "commit": "1206e247d91afe0137d938d3be43a0af3de73888" }
 }

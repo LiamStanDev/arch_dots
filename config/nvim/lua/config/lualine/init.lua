@@ -128,6 +128,7 @@ return function()
 					separator = { right = "" },
 					color = { fg = palette.flamingo },
 				},
+				components.mcphub,
 				{
 					-- lsp
 					function()

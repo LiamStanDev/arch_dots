@@ -316,59 +316,6 @@ return {
 		config = require("config.lualine.init"),
 	},
 
-	-- AI
-	{
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		event = "InsertEnter",
-		opts = {
-			suggestion = { enabled = false },
-			panel = { enabled = false },
-			filetypes = {
-				markdown = true,
-				help = true,
-			},
-		},
-	},
-	-- {
-	-- 	"CopilotC-Nvim/CopilotChat.nvim",
-	-- 	dependencies = {
-	-- 		-- { "zbirenbaum/copilot.lua", event = "InsertEnter", config = true },
-	-- 		{ "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
-	-- 	},
-	-- 	branch = "main",
-	-- 	build = "make tiktoken", -- Only on MacOS or Linux
-	-- 	config = require("config.copilot-chat"),
-	-- },
-	{
-		"yetone/avante.nvim",
-		build = "make",
-		event = "VeryLazy",
-		version = false, -- Never set this value to "*"! Never!
-		opts = require("config.avante"),
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"MunifTanjim/nui.nvim",
-			{
-				-- support for image pasting
-				"HakonHarnes/img-clip.nvim",
-				event = "VeryLazy",
-				opts = {
-					-- recommended settings
-					default = {
-						embed_image_as_base64 = false,
-						prompt_for_file_name = false,
-						drag_and_drop = {
-							insert_mode = true,
-						},
-						-- required for Windows users
-						use_absolute_path = true,
-					},
-				},
-			},
-		},
-	},
-
 	--  Code folding
 	{
 		"kevinhwang91/nvim-ufo",
@@ -464,6 +411,65 @@ return {
 			leader_key = ";", -- Recommended to be a single key
 			buffer_leader_key = "m", -- Per Buffer Mappings
 		},
+	},
+
+	-- AI
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		opts = {
+			suggestion = { enabled = false },
+			panel = { enabled = false },
+			filetypes = {
+				markdown = true,
+				help = true,
+			},
+		},
+	},
+	{
+		"yetone/avante.nvim",
+		build = "make",
+		event = "VeryLazy",
+		version = false, -- Never set this value to "*"! Never!
+		opts = require("config.avante"),
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+			{
+				-- support for image pasting
+				"HakonHarnes/img-clip.nvim",
+				event = "VeryLazy",
+				opts = {
+					-- recommended settings
+					default = {
+						embed_image_as_base64 = false,
+						prompt_for_file_name = false,
+						drag_and_drop = {
+							insert_mode = true,
+						},
+						-- required for Windows users
+						use_absolute_path = true,
+					},
+				},
+			},
+		},
+	},
+	{
+		"ravitemer/mcphub.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		build = "npm install -g mcp-hub@latest", -- Installs `mcp-hub` node binary globally
+		config = function()
+			require("mcphub").setup({
+				extensions = {
+					avante = {
+						make_slash_commands = true, -- make /slash commands from MCP server prompts
+					},
+				},
+			})
+		end,
 	},
 
 	-- fcitx input method auto switch
