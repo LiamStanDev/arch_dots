@@ -9,3 +9,4 @@ config/Code/**/*
 !config/Code/User/settings.json
 !config/Code/User/snippets/
 !config/Code/User/snippets/*.json
+config/zsh/secret.zsh

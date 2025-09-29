@@ -1,4 +1,5 @@
 source "$HOME/.config/zsh/environment.zsh"
+[ -f "$HOME/.config/zsh/secret.zsh" ] && source $HOME/.config/zsh/secret.zsh
 # Early initialization - Zinit plugin manager
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"

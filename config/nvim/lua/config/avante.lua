@@ -1,9 +1,12 @@
 return {
-	-- add any opts here
 	-- this file can contain specific instructions for your project
 	instructions_file = "avante.md",
-	-- for example
 	provider = "copilot",
+	-- provider = "gemini",
+
+	-- agentic (default): Uses AI tools to automatically generate and apply code changes
+	-- legacy: Uses the traditional planning method without automatic tool execution
+	mode = "agentic",
 
 	rules = {
 		project_dir = ".avante/rules", -- relative to project root, can also be an absolute path
@@ -16,6 +19,47 @@ return {
 		reload_on_dir_changed = true, -- Auto-switch on directory change
 		port_range = { min = 40000, max = 41000 }, -- Port range for workspace hubs
 		get_port = nil, -- Optional function for custom port assignment
+	},
+
+	providers = {
+		gemini = {
+			endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
+			model = "gemini-2.0-flash",
+			timeout = 30000, -- Timeout in milliseconds
+			context_window = 1048576,
+			use_ReAct_prompt = true,
+			extra_request_body = {
+				generationConfig = {
+					temperature = 0.3,
+				},
+			},
+		},
+	},
+
+	-- curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent" \
+	--   -H 'Content-Type: application/json' \
+	--   -H 'X-goog-api-key: AIzaSyAkRj2TV7UJ3IyO_ZX-KkOaB_n2MYzoOCE' \
+	--   -X POST \
+	--   -d '{
+	--     "contents": [
+	--       {
+	--         "parts": [
+	--           {
+	--             "text": "Explain how AI works in a few words"
+	--           }
+	--         ]
+	--       }
+	--     ]
+	--   }'
+
+	behaviour = {
+		auto_set_highlight_group = true,
+		auto_set_keymaps = true,
+		auto_apply_diff_after_generation = true,
+		support_paste_from_clipboard = false,
+		minimize_diff = true, -- Whether to remove unchanged lines when applying a code block
+		enable_token_counting = true, -- Whether to enable token counting. Default to true.
+		auto_approve_tool_permissions = false, -- Default: show permission prompts for all tools
 	},
 
 	shortcuts = {
