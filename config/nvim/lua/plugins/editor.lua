@@ -142,6 +142,8 @@ return {
 			"kristijanhusak/vim-dadbod-completion",
 			"fang2hou/blink-copilot",
 			"rcarriga/cmp-dap",
+			"saghen/blink.cmp",
+			"Kaiser-Yang/blink-cmp-avante",
 		},
 	},
 
@@ -266,9 +268,10 @@ return {
 		"MeanderingProgrammer/render-markdown.nvim",
 		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
 		opts = {
-			file_types = { "markdown", "copilot-chat" },
+			file_types = { "markdown", "copilot-chat", "Avante" },
 			render_modes = true,
 		},
+		ft = { "markdown", "Avante" },
 	},
 
 	-- File explorer
@@ -313,16 +316,57 @@ return {
 		config = require("config.lualine.init"),
 	},
 
-	-- Copilot
+	-- AI
 	{
-		"CopilotC-Nvim/CopilotChat.nvim",
-		dependencies = {
-			-- { "zbirenbaum/copilot.lua", event = "InsertEnter", config = true },
-			{ "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		opts = {
+			suggestion = { enabled = false },
+			panel = { enabled = false },
+			filetypes = {
+				markdown = true,
+				help = true,
+			},
 		},
-		branch = "main",
-		build = "make tiktoken", -- Only on MacOS or Linux
-		config = require("config.copilot-chat"),
+	},
+	-- {
+	-- 	"CopilotC-Nvim/CopilotChat.nvim",
+	-- 	dependencies = {
+	-- 		-- { "zbirenbaum/copilot.lua", event = "InsertEnter", config = true },
+	-- 		{ "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+	-- 	},
+	-- 	branch = "main",
+	-- 	build = "make tiktoken", -- Only on MacOS or Linux
+	-- 	config = require("config.copilot-chat"),
+	-- },
+	{
+		"yetone/avante.nvim",
+		build = "make",
+		event = "VeryLazy",
+		version = false, -- Never set this value to "*"! Never!
+		opts = require("config.avante"),
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+			{
+				-- support for image pasting
+				"HakonHarnes/img-clip.nvim",
+				event = "VeryLazy",
+				opts = {
+					-- recommended settings
+					default = {
+						embed_image_as_base64 = false,
+						prompt_for_file_name = false,
+						drag_and_drop = {
+							insert_mode = true,
+						},
+						-- required for Windows users
+						use_absolute_path = true,
+					},
+				},
+			},
+		},
 	},
 
 	--  Code folding

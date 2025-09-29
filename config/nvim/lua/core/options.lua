@@ -68,6 +68,8 @@ local options = {
 	},
 	foldenable = true, -- enable folding
 	-- winborder = "single", -- affects all windows (Nvim 0.11)
+
+	laststatus = 3, -- views can only be fully collapsed with the global statusline
 }
 
 for option, val in pairs(options) do

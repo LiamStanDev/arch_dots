@@ -12,3 +12,4 @@ md.obsidian.Obsidian flathub
 org.kde.okular flathub
 org.pgadmin.pgadmin4 flathub
 org.qbittorrent.qBittorrent flathub
+us.zoom.Zoom flathub

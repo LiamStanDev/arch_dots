@@ -13,6 +13,8 @@ vim.lsp.config("*", {
 	root_markers = { ".git" }, -- Project root detection
 })
 
+require("config.lsp") -- my custom setup for lsp
+
 -- Set up keymaps and autocmds when an LSP server attaches to a buffer
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(event)
@@ -101,6 +103,12 @@ vim.diagnostic.config({
 })
 
 return {
+	-- predefined lsp settings
+	{
+		"neovim/nvim-lspconfig",
+		event = { "BufReadPre", "BufNewFile" },
+	},
+
 	-- Services installer
 	{
 		"williamboman/mason.nvim",

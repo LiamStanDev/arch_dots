@@ -7,6 +7,9 @@ end
 return function()
 	local G = require("core")
 	local blink = require("blink.cmp")
+
+	vim.api.nvim_set_hl(0, "BlinkCmpKindAvante", { default = false, fg = "#89b4fa" })
+
 	blink.setup({
 		enabled = is_cmp_buffer,
 		-- signature = { enabled = true }, -- this is show when insert but use noice.nvim not.
@@ -57,10 +60,10 @@ return function()
 					return { "dadbod", "snippets", "buffer" }
 				elseif cmp_dap.is_dap_buffer() then
 					return { "dap", "snippets", "buffer" }
-				elseif vim.bo.filetype == "copilot-chat" then
-					return { "copilot", "buffer" }
+				-- elseif vim.bo.filetype == "copilot-chat" then
+				-- 	return { "copilot", "buffer" }
 				else
-					return { "copilot", "lsp", "lazydev", "path", "snippets", "buffer" }
+					return { "copilot", "avante", "lsp", "lazydev", "path", "snippets", "buffer" }
 				end
 			end,
 			providers = {
@@ -77,6 +80,10 @@ return function()
 				},
 				dap = { name = "dap", module = "blink.compat.source" },
 				dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+				avante = {
+					module = "blink-cmp-avante",
+					name = "Avante",
+				},
 			},
 		},
 		keymap = {
