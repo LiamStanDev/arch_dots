@@ -10,6 +10,8 @@ add_path "$HOME/.local/share/nvim/mason/bin"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+add_path "$HOME/.npm-global/bin"
+# npm config set prefix '~/.npm-global'
 export PNPM_HOME="$HOME/.pnpm"
 # npm config set strict-ssl false # For the first time (Cathay)
 add_path "$PNPM_HOME"
