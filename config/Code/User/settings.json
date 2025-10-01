@@ -39,7 +39,7 @@
   "editor.smoothScrolling": true,
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.inlineSuggest.suppressSuggestions": true,
-  "editor.guides.indentation": false,
+  "editor.guides.indentation": true,
   "editor.semanticHighlighting.enabled": true,
   "editor.inlayHints.enabled": "on",
   "editor.inlineSuggest.enabled": true,
@@ -97,6 +97,17 @@
   // Lua
   "[lua]": {
     "editor.defaultFormatter": "JohnnyMorganz.stylua"
+  },
+
+  // python
+  "python.analysis.typeCheckingMode": "strict",
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.tabSize": 4,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.ruff": "explicit",
+      "source.organizeImports.ruff": "explicit"
+    }
   },
 
   // c#
@@ -334,10 +345,6 @@
   ],
   "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS).*(\\n\\s*//\\s{2,}.*)*",
   "github.copilot.nextEditSuggestions.enabled": true,
-  "roo-cline.allowedCommands": [
-    "git log",
-    "git diff",
-    "git show"
-  ],
+  "roo-cline.allowedCommands": ["git log", "git diff", "git show"],
   "roo-cline.deniedCommands": []
 }
