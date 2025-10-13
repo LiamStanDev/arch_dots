@@ -471,39 +471,4 @@ return {
 			})
 		end,
 	},
-
-	-- fcitx input method auto switch
-	-- {
-	-- 	"alohaia/fcitx.nvim",
-	-- 	config = function()
-	-- 		require("fcitx")({})
-	-- 	end,
-	-- },
-
-	-- leetcode problems
-	-- {
-	-- 	"kawre/leetcode.nvim",
-	-- 	build = ":TSUpdate html", -- if you have `nvim-treesitter` installed
-	-- 	dependencies = {
-	-- 		"ibhagwan/fzf-lua",
-	-- 		"nvim-lua/plenary.nvim",
-	-- 		"MunifTanjim/nui.nvim",
-	-- 	},
-	-- 	cmd = "Leet",
-	-- 	opts = {
-	-- 		lang = "python3",
-	-- 		storage = {
-	-- 			home = "~/workspace/leetcode",
-	-- 			cache = vim.fn.stdpath("cache") .. "/leetcode",
-	-- 		},
-	-- 		keys = {
-	-- 			toggle = { "q" },
-	-- 			confirm = { "<CR>" },
-	-- 			reset_testcases = "r",
-	-- 			use_testcase = "U",
-	-- 			focus_testcases = "H",
-	-- 			focus_result = "L",
-	-- 		},
-	-- 	},
-	-- },
 }
