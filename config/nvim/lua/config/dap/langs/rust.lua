@@ -87,95 +87,232 @@ end
 
 --- Extracts the test function name from the current line.
 -- @return The test function name if found, otherwise nil.
-local function select_test()
-	local line = vim.api.nvim_get_current_line()
-	local test_match = string.match(line, "fn%s+([%w_]+).*#%[test%]")
-	return test_match
+local function select_test_cursor()
+	local row, _ = unpack(vim.api.nvim_win_get_cursor(0))
+	local current_line = vim.api.nvim_get_current_line()
+
+	-- current line should have 'fn (...)'
+	local test_match = string.match(current_line, "fn%s+([%w_]+)")
+
+	if test_match then
+		-- check previous line for #[test] attribute (if not the first line)
+		if row > 1 then
+			local prev_line = vim.api.nvim_buf_get_lines(0, row - 2, row - 1, false)[1] -- Lua's indices are 1-based, nvim_buf_get_lines uses 0-based for start
+			if string.match(prev_line:match("^%s*(.*)$"), "#%[test%]") then
+				return test_match
+			end
+		end
+		-- check current line for #[test] attribute
+		if string.match(current_line, "#%[test%]") then
+			return test_match
+		end
+	end
+
+	return nil
 end
 
--- Default DAP configuration for Rust debugging.
-local default = {
-	type = "codelldb",
-	request = "launch",
-	cwd = "${workspaceFolder}",
-	stopOnEntry = false,
-	program = function()
-		return select_target("bins")
-	end,
-	env = function()
-		local variables = {}
-		local path_var = (vim.fn.has("mac") == 1) and "DYLD_LIBRARY_PATH" or "LD_LIBRARY_PATH"
+-- Rust GDB
+-- dap.configurations.rust = {
+-- 	{
+-- 		name = "Debug",
+-- 		type = "rust-gdb",
+-- 		request = "launch",
+-- 		program = function()
+-- 			return select_target("bins")
+-- 		end,
+-- 		cwd = "${workspaceFolder}",
+-- 		stopAtBeginningOfMainSubprogram = false,
+-- 	},
+--
+-- 	{
+-- 		name = "Debug (+args)",
+-- 		type = "rust-gdb",
+-- 		request = "launch",
+-- 		program = function()
+-- 			return select_target("bins")
+-- 		end,
+-- 		args = utils.read_args,
+-- 		cwd = "${workspaceFolder}",
+-- 		stopAtBeginningOfMainSubprogram = false,
+-- 	},
+--
+-- 	{
+-- 		name = "Debug tests",
+-- 		type = "rust-gdb",
+-- 		request = "launch",
+-- 		program = function()
+-- 			return select_target("tests")
+-- 		end,
+-- 		args = { "--test-threads=1" },
+-- 		cwd = "${workspaceFolder}",
+-- 	},
+--
+-- 	{
+-- 		name = "Debug tests (+args)",
+-- 		type = "rust-gdb",
+-- 		request = "launch",
+-- 		program = function()
+-- 			return select_target("tests")
+-- 		end,
+-- 		args = function()
+-- 			return vim.list_extend(utils.read_args(), { "--test-threads=1" })
+-- 		end,
+-- 		cwd = "${workspaceFolder}",
+-- 	},
+--
+-- 	{
+-- 		name = "Debug tests (cursor)",
+-- 		type = "rust-gdb",
+-- 		request = "launch",
+-- 		program = function()
+-- 			return select_test_cursor()
+-- 		end,
+-- 		args = function()
+-- 			local test = select_test_cursor()
+-- 			local args = test and { "--exact", test } or {}
+-- 			return vim.list_extend(args, { "--test-threads=1" })
+-- 		end,
+-- 		cwd = "${workspaceFolder}",
+-- 	},
+--
+-- 	{
+-- 		name = "Attach",
+-- 		type = "rust-gdb",
+-- 		request = "attach",
+-- 		program = function()
+-- 			return select_target("bins")
+-- 		end,
+-- 		args = function()
+-- 			local test = select_test_cursor()
+-- 			local args = test and { "--exact", test } or {}
+-- 			return vim.list_extend(args, { "--test-threads=1" })
+-- 		end,
+-- 		pid = function()
+-- 			local name = vim.fn.input("Executable name (filter): ")
+-- 			return require("dap.utils").pick_process({ filter = name })
+-- 		end,
+-- 		cwd = "${workspaceFolder}",
+-- 	},
+--
+-- 	{
+-- 		name = "Attach to gdb server:1234",
+-- 		type = "rust-gdb",
+-- 		request = "attach",
+-- 		target = "localhost:1234",
+-- 		cwd = "${workspaceFolder}",
+-- 	},
+-- }
 
-		local rust_lib_path = vim.fn.trim(vim.fn.system("rustc --print target-libdir"))
-		if rust_lib_path == "" then
-			vim.notify("Failed to retrieve Rust library path", vim.log.levels.ERROR)
-			return nil
+-- Codelldb
+local function initCommandsLLDB()
+	-- Get the commands from the Rust installation.
+	local rustc_sysroot = vim.fn.trim(vim.fn.system("rustc --print sysroot"))
+	if rustc_sysroot == "" then
+		vim.notify("Failed to retrieve Rust sysroot", vim.log.levels.ERROR)
+		return {}
+	end
+	-- Script provides custom logic to interpret and display Rust types and data structures correctly.
+	local script_path = rustc_sysroot .. "/lib/rustlib/etc/lldb_lookup.py"
+	-- Contains a set of predefined LLDB commands.
+	local commands_file = rustc_sysroot .. "/lib/rustlib/etc/lldb_commands"
+
+	local cmds = { 'command script import "' .. script_path .. '"' }
+	local file = io.open(commands_file, "r")
+	if file then
+		for line in file:lines() do
+			table.insert(cmds, line)
 		end
-		local target_path = vim.fn.getcwd() .. "/target/debug/deps"
+		file:close()
+	end
 
-		-- Prepend Rust path into $PATH.
-		variables[path_var] = rust_lib_path .. ":" .. target_path
-		return variables
-	end,
-	-- This allows the debugger to locate and display Rust standard library source code.
-	sourceMap = { ["/rustc/*"] = vim.fn.expand("$RUST_SRC_PATH") },
-	-- Initializes LLDB with Rust-specific commands for better debugging.
-	initCommands = function()
-		-- Get the commands from the Rust installation.
-		local rustc_sysroot = vim.fn.trim(vim.fn.system("rustc --print sysroot"))
-		if rustc_sysroot == "" then
-			vim.notify("Failed to retrieve Rust sysroot", vim.log.levels.ERROR)
-			return {}
-		end
-		-- Script provides custom logic to interpret and display Rust types and data structures correctly.
-		local script = rustc_sysroot .. "/lib/rustlib/etc/lldb_lookup.py"
-		-- Contains a set of predefined LLDB commands.
-		local commands_file = rustc_sysroot .. "/lib/rustlib/etc/lldb_commands"
+	return cmds
+end
 
-		local cmds = { 'command script import "' .. script .. '"' }
-		local file = io.open(commands_file, "r")
-		if file then
-			for line in file:lines() do
-				table.insert(cmds, line)
-			end
-			file:close()
-		end
-
-		return cmds
-	end,
-}
-
--- DAP configurations for Rust debugging.
 dap.configurations.rust = {
-	vim.tbl_extend("force", default, { name = "Debug" }),
-	vim.tbl_extend("force", default, { name = "Debug (+args)", args = utils.read_args }),
+	{
+		name = "Debug",
+		type = "codelldb",
+		request = "launch",
+		program = function()
+			return select_target("bins")
+		end,
+		cwd = "${workspaceFolder}",
+		initCommands = initCommandsLLDB,
+		stopOnEntry = false,
+	},
 
-	vim.tbl_extend("force", default, {
+	{
+		name = "Debug (+args)",
+		type = "codelldb",
+		request = "launch",
+		program = function()
+			return select_target("bins")
+		end,
+		args = utils.read_args,
+		cwd = "${workspaceFolder}",
+		initCommands = initCommandsLLDB,
+		stopOnEntry = false,
+	},
+
+	{
 		name = "Debug tests",
+		type = "codelldb",
+		request = "launch",
 		program = function()
 			return select_target("tests")
 		end,
 		args = { "--test-threads=1" },
-	}),
-	vim.tbl_extend("force", default, {
+		cwd = "${workspaceFolder}",
+		initCommands = initCommandsLLDB,
+	},
+
+	{
 		name = "Debug tests (+args)",
+		type = "codelldb",
+		request = "launch",
 		program = function()
 			return select_target("tests")
 		end,
 		args = function()
 			return vim.list_extend(utils.read_args(), { "--test-threads=1" })
 		end,
-	}),
-	vim.tbl_extend("force", default, {
-		name = "Debug test (cursor)",
+		cwd = "${workspaceFolder}",
+		initCommands = initCommandsLLDB,
+	},
+
+	{
+		name = "Debug tests (cursor)",
+		type = "codelldb",
+		request = "launch",
 		program = function()
-			return select_target("tests")
+			return select_test_cursor()
 		end,
 		args = function()
-			local test = select_test()
+			local test = select_test_cursor()
 			local args = test and { "--exact", test } or {}
 			return vim.list_extend(args, { "--test-threads=1" })
 		end,
-	}),
-	vim.tbl_extend("force", default, { name = "Attach debugger", request = "attach", program = select_target }),
+		cwd = "${workspaceFolder}",
+		initCommands = initCommandsLLDB,
+	},
+
+	{
+		name = "Attach",
+		type = "codelldb",
+		request = "attach",
+		program = function()
+			return select_target("bins")
+		end,
+		args = function()
+			local test = select_test_cursor()
+			local args = test and { "--exact", test } or {}
+			return vim.list_extend(args, { "--test-threads=1" })
+		end,
+		pid = function()
+			local name = vim.fn.input("Executable name (filter): ")
+			return require("dap.utils").pick_process({ filter = name })
+		end,
+		cwd = "${workspaceFolder}",
+		initCommands = initCommandsLLDB,
+	},
 }

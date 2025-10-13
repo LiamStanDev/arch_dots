@@ -11,10 +11,10 @@ local keymaps = {
 	{ mode = { "n", "v", "x" }, key = "X", action = '"_X', desc = "Disable copy when delete" },
 
 	-- Disable arrow keys in normal mode
-	{ mode = "n", key = "<left>", action = '<CMD>echo "Use h to move!!"<CR>' },
-	{ mode = "n", key = "<right>", action = '<CMD>echo "Use l to move!!"<CR>' },
-	{ mode = "n", key = "<up>", action = '<CMD>echo "Use k to move!!"<CR>' },
-	{ mode = "n", key = "<down>", action = '<CMD>echo "Use j to move!!"<CR>' },
+	-- { mode = "n", key = "<left>", action = '<CMD>echo "Use h to move!!"<CR>' },
+	-- { mode = "n", key = "<right>", action = '<CMD>echo "Use l to move!!"<CR>' },
+	-- { mode = "n", key = "<up>", action = '<CMD>echo "Use k to move!!"<CR>' },
+	-- { mode = "n", key = "<down>", action = '<CMD>echo "Use j to move!!"<CR>' },
 
 	-- Move line/block
 	{ mode = { "n", "i" }, key = "<A-j>", action = "<CMD>m .+1<CR>==", desc = "Move line/block down" },

@@ -1,6 +1,15 @@
 local M = {}
 
+local dap = require("dap")
+
 function M.setup()
+	-- local vscode = require("dap.ext.vscode")
+	-- local json = require("plenary.json")
+	-- vscode.json_decode = function(str)
+	-- 	return vim.json.decode(json.json_strip_comments(str))
+	-- end
+
+	-- Lang and adaptors
 	local langs_path = vim.fn.stdpath("config") .. "/lua/config/dap/langs"
 	local langs = vim.fn.glob(langs_path .. "/*.lua", false, true)
 
