@@ -22,6 +22,9 @@ return {
 	},
 
 	providers = {
+		copilot = {
+			model = "gpt-4o",
+		},
 		gemini = {
 			endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
 			model = "gemini-2.0-flash",
@@ -36,30 +39,13 @@ return {
 		},
 	},
 
-	-- curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent" \
-	--   -H 'Content-Type: application/json' \
-	--   -H 'X-goog-api-key: AIzaSyAkRj2TV7UJ3IyO_ZX-KkOaB_n2MYzoOCE' \
-	--   -X POST \
-	--   -d '{
-	--     "contents": [
-	--       {
-	--         "parts": [
-	--           {
-	--             "text": "Explain how AI works in a few words"
-	--           }
-	--         ]
-	--       }
-	--     ]
-	--   }'
-
 	behaviour = {
-		auto_set_highlight_group = true,
-		auto_set_keymaps = true,
 		auto_apply_diff_after_generation = true,
 		support_paste_from_clipboard = false,
-		minimize_diff = true, -- Whether to remove unchanged lines when applying a code block
+		minimize_diff = false, -- Whether to remove unchanged lines when applying a code block
 		enable_token_counting = true, -- Whether to enable token counting. Default to true.
 		auto_approve_tool_permissions = false, -- Default: show permission prompts for all tools
+		confirmation_ui_style = "popup",
 	},
 
 	shortcuts = {

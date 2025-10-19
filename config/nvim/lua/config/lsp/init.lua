@@ -2,6 +2,16 @@ vim.lsp.config("rust_analyzer", {
 	settings = {
 		-- ref: https://rust-analyzer.github.io/book/configuration.html
 		["rust-analyzer"] = {
+			inlayHints = {
+				maxLength = nil,
+				lifetimeElisionHints = {
+					enable = "skip_trivial",
+					useParameterNames = true,
+				},
+				closureReturnTypeHints = {
+					enable = "always",
+				},
+			},
 			check = {
 				enabled = true,
 				command = "clippy", -- Use Clippy for linting.
