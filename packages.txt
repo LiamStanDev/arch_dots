@@ -119,7 +119,6 @@ ffmpegthumbs
 file
 filelight
 filesystem
-firefox
 firewall-config
 firewalld
 flatpak-kcm
@@ -270,6 +269,7 @@ libreoffice-math
 libreoffice-writer
 libva-intel-media-driver
 livesys-scripts
+lldb
 lm_sensors
 logrotate
 lrzsz
