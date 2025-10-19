@@ -33,7 +33,7 @@ G.code_hl_servers = {
 ]]
 -- stylua: ignore
 G.lsp_servers = {
-  "lua_ls", "pyright", "bashls", "ts_ls", "taplo", "rust_analyzer", "cmake",
+  "lua_ls", "pyright", "bashls", "ts_ls", "rust_analyzer", "cmake",
   "clangd", "dockerls", "docker_compose_language_service", "jsonls",
   "html", "postgres_lsp"
 }
@@ -51,7 +51,7 @@ G.formatters = {
   typescript = { "prettierd", "prettier", stop_after_first = true },
   typescriptreact = { "prettierd", "prettier", stop_after_first = true },
   html = { "prettierd", "prettier", stop_after_first = true },
-  toml = { "prettierd", "prettier", stop_after_first = true },
+  toml = { "taplo", stop_after_first = true },
   json = { "prettierd", "prettier", stop_after_first = true },
   yaml = { "prettierd", "prettier", stop_after_first = true },
   css = { "prettierd", "prettier", stop_after_first = true },

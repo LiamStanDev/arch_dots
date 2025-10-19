@@ -16,6 +16,7 @@ background-opacity = 0.95
 
 # Mics
 confirm-close-surface = false
+mouse-scroll-multiplier = 0.25
 
 # Keybindings
 # check: ghostty +list-keybinds --default
