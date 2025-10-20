@@ -23,8 +23,8 @@ local keymaps = {
 	{ mode = "x", key = "<A-k>", action = "<CMD>m '<-2<CR>gv-gv", desc = "Move line/block up" },
 
 	-- Head and tail of line
-	{ mode = "n", key = "<S-l>", action = "<CMD>bnext<CR>", desc = "Move to the end of the line" },
-	{ mode = "n", key = "<S-h>", action = "<CMD>bprev<CR>", desc = "Move to the start of the line" },
+	-- { mode = "n", key = "<S-l>", action = "<CMD>bnext<CR>", desc = "Move to the previos of the line" },
+	-- { mode = "n", key = "<S-h>", action = "<CMD>bprev<CR>", desc = "Move to the start of the line" },
 
 	-- Resize with arrows
 	{ mode = { "n", "v", "t" }, key = "<M-->", action = "<CMD>resize -5<CR>", desc = "Increase Hight" },

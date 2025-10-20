@@ -10,9 +10,9 @@ return {
 	-- Hightlight
 	{
 		"nvim-treesitter/nvim-treesitter",
-		version = false, -- last release
+		branch = "master",
+		lazy = false,
 		build = ":TSUpdate",
-		event = { "VeryLazy" },
 		cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
 		keys = {
 			{ "<c-space>", desc = "Increment Selection" },
@@ -82,7 +82,6 @@ return {
 		version = "*",
 		opts = {
 			modes = { insert = true, command = true, terminal = false },
-			markdown = true,
 			-- skip autopair when next character is one of these
 			skip_next = [=[[%w%%%[%.%`%$]]=],
 			-- skip autopair when the cursor is inside these treesitter nodes
