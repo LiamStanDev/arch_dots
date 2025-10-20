@@ -1,8 +1,7 @@
 return function()
 	local components = require("config.lualine.components")
 	local utils = require("config.lualine.utils")
-	-- local palette = require("catppuccin.palettes").get_palette("frappe")
-	local palette = require("core.palette")
+	local palette = require("catppuccin.palettes").get_palette("macchiato")
 	local statusline = require("arrow.statusline")
 
 	require("lualine").setup({
@@ -173,7 +172,7 @@ return function()
 					separator = {
 						left = "",
 					},
-					color = { bg = palette.teal, fg = palette.black },
+					color = { bg = palette.teal, fg = palette.base },
 					padding = 0.3,
 				},
 				{
@@ -194,7 +193,7 @@ return function()
 					separator = {
 						left = "",
 					},
-					color = { bg = palette.yellow, fg = palette.black },
+					color = { bg = palette.yellow, fg = palette.base },
 					padding = 0.3,
 				},
 				{
@@ -215,7 +214,7 @@ return function()
 					separator = {
 						left = "",
 					},
-					color = { bg = palette.blue, fg = palette.black },
+					color = { bg = palette.blue, fg = palette.base },
 					padding = 0.3,
 				},
 				{

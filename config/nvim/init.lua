@@ -36,7 +36,6 @@ G.lsp_servers = {
   "lua_ls", "pyright", "bashls" , "rust_analyzer", "cmake",
   "clangd", "dockerls", "docker_compose_language_service", "jsonls",
   "html", "postgres_lsp", "vtsls"
-  -- "ts_ls"
 }
 
 --[[ Formatters for code formatting
@@ -96,6 +95,8 @@ G.dap_servers = {
   Change to your preferred theme (e.g., "gruvbox", "catppuccin").
 ]]
 G.colorscheme = "catppuccin"
+-- G.colorscheme = "tokyonight-storm"
+-- G.colorscheme = "onedark"
 
 --[[ Disable the quit confirmation dialog
   Set to true to disable confirmation when quitting.
