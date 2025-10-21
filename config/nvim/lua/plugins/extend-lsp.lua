@@ -2,8 +2,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function()
-      ---@class PluginLspOpts
-      local ret = {
+      return {
         -- options for vim.diagnostic.config()
         ---@type vim.diagnostic.Opts
         diagnostics = {
@@ -13,8 +12,6 @@ return {
           --   spacing = 4,
           --   source = "if_many",
           --   prefix = "●",
-          --   -- this will set set the prefix to a function that returns the diagnostics icon based on the severity
-          --   -- prefix = "icons",
           -- },
           severity_sort = true,
           signs = {
@@ -126,6 +123,19 @@ return {
               },
             },
           },
+          basedpyright = {
+            analysis = {
+              autoSearchPath = true,
+              useLibraryCodeForTypes = true,
+              autoImportCompletions = true,
+              typeCheckingMode = "basic",
+              diagnosticMode = "workspace",
+              inlayHints = {
+                callArgumentNames = true,
+                functionReturnTypes = true,
+              },
+            },
+          },
         },
         -- you can do any additional lsp server setup here
         -- return true if you don't want this server to be setup with lspconfig
@@ -140,7 +150,6 @@ return {
           -- ["*"] = function(server, opts) end,
         },
       }
-      return ret
     end,
   },
 }
