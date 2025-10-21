@@ -8,11 +8,13 @@ return {
         diagnostics = {
           underline = true,
           update_in_insert = false,
+          float = { border = "single" }, -- Floating window style
           -- virtual_text = {
           --   spacing = 4,
           --   source = "if_many",
           --   prefix = "●",
           -- },
+          virtual_text = false, -- Disable virtual text
           severity_sort = true,
           signs = {
             text = {
