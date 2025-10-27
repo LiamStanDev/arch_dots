@@ -9,10 +9,10 @@ local keymaps = {
   { mode = { "n", "v", "x" }, key = "x", action = '"_x', desc = "Disable copy when delete" },
   { mode = { "n", "v", "x" }, key = "X", action = '"_X', desc = "Disable copy when delete" },
 
-  { mode = { "n" }, key = "<C-h>", action = ":<C-U>TmuxNavigateLeft<cr>", desc = "Navigate left" },
-  { mode = { "n" }, key = "<C-l>", action = ":<C-U>TmuxNavigateRight<cr>", desc = "Navigate right" },
-  { mode = { "n" }, key = "<C-j>", action = ":<C-U>TmuxNavigateDown<cr>", desc = "Navigate Down" },
-  { mode = { "n" }, key = "<C-k>", action = ":<C-U>TmuxNavigateUp<cr>", desc = "NavigateUp" },
+  { mode = { "n" }, key = "<C-h>", action = "<CMD>TmuxNavigateLeft<cr>", desc = "Navigate left" },
+  { mode = { "n" }, key = "<C-l>", action = "<CMD>TmuxNavigateRight<cr>", desc = "Navigate right" },
+  { mode = { "n" }, key = "<C-j>", action = "<CMD>TmuxNavigateDown<cr>", desc = "Navigate Down" },
+  { mode = { "n" }, key = "<C-k>", action = "<CMD>TmuxNavigateUp<cr>", desc = "NavigateUp" },
 
   -- Resize with arrows
   { mode = { "n", "v", "t" }, key = "<M-->", action = "<CMD>resize -5<CR>", desc = "Increase Hight" },
