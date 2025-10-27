@@ -57,6 +57,7 @@ cirrus-audio-firmware
 code
 colord
 colord-kde
+compat-lua
 compsize
 containerd.io
 coreutils
@@ -274,6 +275,7 @@ lm_sensors
 logrotate
 lrzsz
 lsof
+luarocks
 lvm2
 mactel-boot
 mailcap
@@ -352,6 +354,7 @@ plymouth-system-theme
 pnpm
 policycoreutils
 polkit-kde
+postgresql
 ppp
 prefixdevname
 procps-ng
