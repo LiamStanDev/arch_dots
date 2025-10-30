@@ -1,13 +1,18 @@
+# Startup Command
+command = ~/.config/ghostty/tmux-ghostty-startup.sh
+
 # Window Configuration
 window-decoration = none
 window-padding-x = 10, 10
 window-padding-y = 4, 7
 
 # Font Configuration
-font-family = Iosevka Nerd Font
+# font-family = FiraCode Nerd Font
+font-family = JetBrainsMono Nerd Font
+# font-family = Iosevka Nerd Font
 font-family = LXGW WenKai Mono TC
 font-family = Noto Color Emoji
-font-size = 13
+font-size = 12
 font-feature = -calt, -liga, -dlig # Disable ligatures
 
 # Theme and Colors
@@ -17,6 +22,8 @@ background-opacity = 0.95
 # Mics
 confirm-close-surface = false
 mouse-scroll-multiplier = 0.25
+shell-integration = zsh
+shell-integration-features = cursor,sudo,title
 
 # Keybindings
 # check: ghostty +list-keybinds --default
