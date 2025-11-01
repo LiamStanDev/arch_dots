@@ -1,14 +1,19 @@
 #!/bin/bash
 SESSION_NAME="ghostty"
 
-# Check if the session already exists
-tmux has-session -t $SESSION_NAME 2>/dev/null
-
-if [ $? -eq 0 ]; then
-  # If the session exists, reattach to it
-  tmux attach-session -t $SESSION_NAME
-else
-  # If the session doesn't exist, start a new one
-  tmux new-session -s $SESSION_NAME -d
-  tmux attach-session -t $SESSION_NAME
+if ! command -v tmux &>/dev/null; then
+  echo "tmux is not installed. Falling back to default shell."
+  exec $SHELL
 fi
+
+if ! tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
+  tmux new-session -s "$SESSION_NAME" -d || {
+    echo "Failed to create tmux session. Falling back to default shell."
+    exec $SHELL
+  }
+fi
+
+tmux attach-session -t "$SESSION_NAME" || {
+  echo "Failed to attach to tmux session. Falling back to default shell."
+  exec $SHELL
+}
