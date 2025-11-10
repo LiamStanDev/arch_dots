@@ -4,12 +4,14 @@ com.discordapp.Discord flathub
 com.freerdp.FreeRDP flathub
 com.getpostman.Postman flathub
 com.github.IsmaelMartinez.teams_for_linux flathub
+com.github.marktext.marktext flathub
 com.google.Chrome flathub
 com.usebottles.bottles flathub
 io.dbeaver.DBeaverCommunity flathub
 io.podman_desktop.PodmanDesktop flathub
 md.obsidian.Obsidian flathub
 org.kde.okular flathub
+org.mozilla.Thunderbird flathub
 org.pgadmin.pgadmin4 flathub
 org.qbittorrent.qBittorrent flathub
 us.zoom.Zoom flathub

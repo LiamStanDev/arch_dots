@@ -119,3 +119,10 @@ if command -v docker &>/dev/null; then
 else
   log "missing docker"
 fi
+
+# kubernetes
+if command -v docker &>/dev/null; then
+  alias -- k='kubectl'
+else
+  log "missing kubectl"
+fi
